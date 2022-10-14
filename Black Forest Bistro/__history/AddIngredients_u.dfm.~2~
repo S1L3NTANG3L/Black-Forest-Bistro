@@ -1,0 +1,83 @@
+object Frame2: TFrame2
+  Left = 0
+  Top = 0
+  Width = 201
+  Height = 284
+  TabOrder = 0
+  object lbl1: TLabel
+    Left = 3
+    Top = 3
+    Width = 169
+    Height = 23
+    Caption = 'Ingredient Name:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbl2: TLabel
+    Left = 3
+    Top = 67
+    Width = 189
+    Height = 23
+    Caption = 'Ingredient Amount:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbl3: TLabel
+    Left = 3
+    Top = 131
+    Width = 161
+    Height = 23
+    Caption = 'Ingredient Price:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object btn1: TButton
+    Left = 3
+    Top = 200
+    Width = 91
+    Height = 25
+    Caption = 'Add Ingredient'
+    TabOrder = 0
+  end
+  object btn2: TButton
+    Left = 3
+    Top = 248
+    Width = 91
+    Height = 25
+    Caption = 'Back'
+    TabOrder = 1
+  end
+  object edt1: TEdit
+    Left = 3
+    Top = 32
+    Width = 121
+    Height = 21
+    TabOrder = 2
+  end
+  object edt2: TEdit
+    Left = 3
+    Top = 96
+    Width = 121
+    Height = 21
+    TabOrder = 3
+  end
+  object edt3: TEdit
+    Left = 3
+    Top = 160
+    Width = 121
+    Height = 21
+    TabOrder = 4
+  end
+end

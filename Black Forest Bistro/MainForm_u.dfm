@@ -1,0 +1,158 @@
+object BlackForestBistro: TBlackForestBistro
+  Left = 0
+  Top = 0
+  Caption = 'Black Forest Bistro'
+  ClientHeight = 682
+  ClientWidth = 1257
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnActivate = FormActivate
+  PixelsPerInch = 96
+  TextHeight = 13
+  inline mnmns1: TMainMenus
+    Left = 173
+    Top = 74
+    Width = 928
+    Height = 570
+    TabOrder = 0
+    ExplicitLeft = 173
+    ExplicitTop = 74
+    inherited img10: TImage
+      Left = 754
+      ExplicitLeft = 754
+    end
+    inherited btnBackToH: TButton
+      OnClick = mnmns1btnBackToHClick
+    end
+  end
+  inline admnbtns1: TAdminButtons
+    Left = 544
+    Top = 24
+    Width = 370
+    Height = 298
+    TabOrder = 1
+    ExplicitLeft = 544
+    ExplicitTop = 24
+  end
+  inline chngvrbls1: TChangeVaribles
+    Left = 1008
+    Top = 24
+    Width = 147
+    Height = 218
+    TabOrder = 2
+    ExplicitLeft = 1008
+    ExplicitTop = 24
+  end
+  inline chckt1: TCheckOut
+    Left = 1049
+    Top = 312
+    Width = 208
+    Height = 271
+    TabOrder = 3
+    ExplicitLeft = 1049
+    ExplicitTop = 312
+  end
+  inline dsrtmn1: TDessertMenu
+    Left = 329
+    Top = 48
+    Width = 928
+    Height = 568
+    TabOrder = 4
+    ExplicitLeft = 329
+    ExplicitTop = 48
+  end
+  inline drnkmn1: TDrinkMenu
+    Left = 330
+    Top = 16
+    Width = 927
+    Height = 565
+    TabOrder = 5
+    ExplicitLeft = 330
+    ExplicitTop = 16
+  end
+  inline hmbtns1: THomeButtons
+    Left = 304
+    Top = 32
+    Width = 393
+    Height = 397
+    TabOrder = 6
+    ExplicitLeft = 304
+    ExplicitTop = 32
+  end
+  inline ldgr1: TLedger
+    Left = 288
+    Top = 48
+    Width = 842
+    Height = 623
+    TabOrder = 7
+    ExplicitLeft = 288
+    ExplicitTop = 48
+  end
+  inline lgnfrm1: TLoginFrame
+    Left = 288
+    Top = 16
+    Width = 314
+    Height = 428
+    TabOrder = 8
+    ExplicitLeft = 288
+    ExplicitTop = 16
+  end
+  inline mngmplys1: TManageEmployees
+    Left = 344
+    Top = 107
+    Width = 913
+    Height = 575
+    TabOrder = 9
+    ExplicitLeft = 344
+    ExplicitTop = 107
+  end
+  inline mngxpns1: TManageExpenses
+    Left = 404
+    Top = 8
+    Width = 853
+    Height = 378
+    TabOrder = 10
+    ExplicitLeft = 404
+    ExplicitTop = 8
+  end
+  inline ordrfrm1: TOrderFrame
+    Left = 360
+    Top = 0
+    Width = 527
+    Height = 492
+    TabOrder = 11
+    ExplicitLeft = 360
+  end
+  inline prftcrv1: TProfitCurve
+    Left = 280
+    Top = 8
+    Width = 887
+    Height = 627
+    TabOrder = 12
+    ExplicitLeft = 280
+    ExplicitTop = 8
+  end
+  inline sdmn1: TSideMenu
+    Left = 152
+    Top = 115
+    Width = 923
+    Height = 567
+    TabOrder = 13
+    ExplicitLeft = 152
+    ExplicitTop = 115
+  end
+  inline strtrmn1: TStarterMenu
+    Left = 80
+    Top = 119
+    Width = 927
+    Height = 563
+    TabOrder = 14
+    ExplicitLeft = 80
+    ExplicitTop = 119
+  end
+end

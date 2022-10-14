@@ -1,0 +1,76 @@
+unit HomeButtons_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
+  Dialogs, ExtCtrls;
+
+type
+  THomeButtons = class(TFrame)
+    imgMain: TImage;
+    imgStarter: TImage;
+    imgDessert: TImage;
+    imgDrink: TImage;
+    imgSide: TImage;
+    imgSettings: TImage;
+    imgExit: TImage;
+    imgOrder: TImage;
+    procedure imgMainClick(Sender: TObject);
+    procedure imgStarterClick(Sender: TObject);
+    procedure imgDrinkClick(Sender: TObject);
+    procedure imgDessertClick(Sender: TObject);
+    procedure imgSideClick(Sender: TObject);
+    procedure imgOrderClick(Sender: TObject);
+    procedure imgSettingsClick(Sender: TObject);
+    procedure imgExitClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure THomeButtons.imgDessertClick(Sender: TObject);
+begin
+//Bleh
+end;
+
+procedure THomeButtons.imgDrinkClick(Sender: TObject);
+begin
+//Bleh
+end;
+
+procedure THomeButtons.imgExitClick(Sender: TObject);
+begin
+//Bleh
+end;
+
+procedure THomeButtons.imgMainClick(Sender: TObject);
+begin
+//Bleh
+end;
+
+procedure THomeButtons.imgOrderClick(Sender: TObject);
+begin
+//Bleh
+end;
+
+procedure THomeButtons.imgSettingsClick(Sender: TObject);
+begin
+//Bleh
+end;
+
+procedure THomeButtons.imgSideClick(Sender: TObject);
+begin
+//Bleh
+end;
+
+procedure THomeButtons.imgStarterClick(Sender: TObject);
+begin
+//Bleh
+end;
+end.

@@ -1,0 +1,44 @@
+unit AddIngredients_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
+  Dialogs, StdCtrls,DataModule_u,BlackForest_u;
+
+type
+  TFrame2 = class(TFrame)
+    btn1: TButton;
+    btn2: TButton;
+    lbl1: TLabel;
+    edt1: TEdit;
+    lbl2: TLabel;
+    edt2: TEdit;
+    lbl3: TLabel;
+    edt3: TEdit;
+    procedure btn1Click(Sender: TObject);
+  private
+    { Private declarations }
+    Formula : TFormula;
+    IngredientName : string;
+    IngredientAmount : real;
+    IngredientPrice : real;
+    SuccessBoolean : Boolean;
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrame2.btn1Click(Sender: TObject);
+begin
+  SuccessBoolean := Formula.CheckIfIngredientExists(IngredientName);
+  if SuccessBoolean then
+  begin
+    Formula.AddStock(IngredientName,IngredientAmount,IngredientPrice);
+  end;
+end;
+
+end.

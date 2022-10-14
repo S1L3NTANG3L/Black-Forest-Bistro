@@ -1,0 +1,54 @@
+unit DataModule_u;
+
+interface
+
+uses
+  SysUtils, Classes, DB, ADODB,Forms;
+
+type
+  TDataModule2 = class(TDataModule)
+    adoconnection: TADOConnection;
+    adoquery: TADOQuery;
+    datasource: TDataSource;
+    adoquerytwo: TADOQuery;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+    ApplicationAddress : WideString;
+  public
+    { Public declarations }
+    dbConnected : Boolean;
+  end;
+
+var
+  DataModule2: TDataModule2;
+
+
+implementation
+
+{$R *.dfm}
+
+procedure TDataModule2.DataModuleCreate(Sender: TObject);
+begin
+  dbConnected := False;
+  try
+    ApplicationAddress := ExtractFilePath(Application.ExeName);
+    with adoconnection do
+    begin
+      ConnectionString :='Provider=Microsoft.ACE.OLEDB.12.0; Data Source ='
+                            + ApplicationAddress
+                            + 'BlackForestDatabase.accdb;' +
+                            'Persist Security Info = FALSE;';
+      LoginPrompt := FALSE;
+      Open;
+    end;
+    adoquery.Connection := adoconnection;
+    adoquerytwo.Connection := adoconnection;
+    adoquery.Active := True;
+    adoquerytwo.Active := True;
+    dbConnected := True;
+  except
+    dbConnected := False;
+  end;
+end;
+end.

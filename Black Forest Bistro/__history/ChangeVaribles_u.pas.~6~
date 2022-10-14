@@ -1,0 +1,58 @@
+unit ChangeVaribles_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
+  Dialogs, StdCtrls,DataModule_u,BlackForest_u;
+
+type
+  TChangeVaribles = class(TFrame)
+    lbl1: TLabel;
+    lbl2: TLabel;
+    edtVat: TEdit;
+    btnChangeVat: TButton;
+    edtProfit: TEdit;
+    btnChangeProfit: TButton;
+    btnBackToA: TButton;
+    procedure btnChangeVatClick(Sender: TObject);
+    procedure btnChangeProfitClick(Sender: TObject);
+  private
+    { Private declarations }
+     Formula : TFormula;
+     Data : TDataModule2;
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TChangeVaribles.btnChangeProfitClick(Sender: TObject);
+begin
+  if (StrToInt(edtProfit.Text) >= 100) or (StrToInt(edtProfit.Text) = 0)  then
+  begin
+    Application.MessageBox('Please enter a valid profit range!', 'Error', MB_OK +
+    MB_ICONSTOP + MB_DEFBUTTON2);
+  end
+  else
+  begin
+    Formula.ChangeVatRange(StrToFloat(edtProfit.Text));
+  end;
+end;
+
+procedure TChangeVaribles.btnChangeVatClick(Sender: TObject);
+begin
+  if (StrToInt(edtVat.Text) >= 100) or (StrToInt(edtVat.Text) = 0)  then
+  begin
+    Application.MessageBox('Please enter a valid vat range!', 'Error', MB_OK +
+    MB_ICONSTOP + MB_DEFBUTTON2);
+  end
+  else
+  begin
+    Formula.ChangeVatRange(StrToFloat(edtVat.Text));
+  end;
+end;
+
+end.

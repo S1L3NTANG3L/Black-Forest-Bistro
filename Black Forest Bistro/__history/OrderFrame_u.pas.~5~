@@ -1,0 +1,53 @@
+unit OrderFrame_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
+  Dialogs, StdCtrls, ComCtrls,DataModule_u,BlackForest_u;
+
+type
+  TOrderFrame = class(TFrame)
+    redtOrder: TRichEdit;
+    cbb1: TComboBox;
+    btn1: TButton;
+    procedure btn1Click(Sender: TObject);
+  private
+    { Private declarations }
+    Formula : TFormula;
+    ItemNumber : Integer;
+    SuccessBoolean : Boolean;
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TOrderFrame.btn1Click(Sender: TObject);
+begin
+  SuccessBoolean := False;
+  if Application.MessageBox('Are you sure you want to remove item for order?' +
+    #13#10 + 'Removal of an item CANNOT be undone.', 'Warning', MB_YESNO +
+    MB_ICONQUESTION + MB_DEFBUTTON2) = IDYES
+  then
+  begin
+    ItemNumber := StrToInt(cbb1.Text);
+    SuccessBoolean := Formula.RemoveItemFromOrder(ItemNumber);
+    if SuccessBoolean then
+    begin
+      Application.MessageBox('Removal of item from order was successful.',
+      'Application->Title.c_str()', MB_OK + MB_ICONINFORMATION +
+      MB_DEFBUTTON2);
+    end
+    else
+    begin
+      Application.MessageBox('Removal of item from order was unsuccessful.',
+      'Application->Title.c_str()', MB_OK + MB_ICONWARNING +
+      MB_DEFBUTTON2);
+    end;
+  end;
+end;
+
+end.

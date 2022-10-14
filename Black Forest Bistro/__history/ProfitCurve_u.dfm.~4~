@@ -1,0 +1,43 @@
+object ProfitCurve: TProfitCurve
+  Left = 0
+  Top = 0
+  Width = 887
+  Height = 627
+  TabOrder = 0
+  object btnBackToA: TButton
+    Left = 806
+    Top = 599
+    Width = 75
+    Height = 25
+    Caption = 'Back'
+    TabOrder = 0
+  end
+  object cht1: TChart
+    Left = 3
+    Top = 3
+    Width = 878
+    Height = 590
+    Title.Text.Strings = (
+      'TChart')
+    View3D = False
+    TabOrder = 1
+    ColorPaletteIndex = 15
+    object lnsrsSeries1: TLineSeries
+      Marks.Arrow.Visible = True
+      Marks.Callout.Brush.Color = clBlack
+      Marks.Callout.Arrow.Visible = True
+      Marks.Visible = False
+      DataSource = dbcrstbsrc1
+      Pointer.InflateMargins = True
+      Pointer.Style = psRectangle
+      Pointer.Visible = False
+      XValues.Name = 'X'
+      XValues.Order = loAscending
+      YValues.Name = 'Y'
+      YValues.Order = loNone
+    end
+  end
+  object dbcrstbsrc1: TDBCrossTabSource
+    Series = lnsrsSeries1
+  end
+end

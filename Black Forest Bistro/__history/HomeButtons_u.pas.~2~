@@ -1,0 +1,29 @@
+unit HomeButtons_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
+  Dialogs, ExtCtrls;
+
+type
+  TButtons = class(TFrame)
+    imgMain: TImage;
+    imgStarter: TImage;
+    imgDessert: TImage;
+    imgDrink: TImage;
+    imgSide: TImage;
+    imgSettings: TImage;
+    imgExit: TImage;
+    imgOrder: TImage;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+end.

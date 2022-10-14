@@ -1,0 +1,253 @@
+object BlackForestBistro: TBlackForestBistro
+  Left = 0
+  Top = 0
+  Caption = 'Black Forest Bistro'
+  ClientHeight = 682
+  ClientWidth = 1257
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnActivate = FormActivate
+  PixelsPerInch = 96
+  TextHeight = 13
+  inline chckt1: TCheckOut
+    Left = 524
+    Top = 211
+    Width = 208
+    Height = 271
+    TabOrder = 3
+    ExplicitLeft = 524
+    ExplicitTop = 211
+    inherited btnPay: TButton
+      OnClick = chckt1btnPayClick
+    end
+    inherited btnBackToO: TButton
+      OnClick = chckt1btnBackToOClick
+    end
+  end
+  inline dsrtmn1: TDessertMenu
+    Left = 165
+    Top = 67
+    Width = 928
+    Height = 568
+    TabOrder = 4
+    ExplicitLeft = 165
+    ExplicitTop = 67
+    inherited btnBackToH: TButton
+      OnClick = dsrtmn1btnBackToHClick
+    end
+  end
+  inline strtrmn1: TStarterMenu
+    Left = 165
+    Top = 66
+    Width = 927
+    Height = 563
+    TabOrder = 5
+    ExplicitLeft = 165
+    ExplicitTop = 66
+    inherited btnBackToH: TButton
+      OnClick = strtrmn1btnBackToHClick
+    end
+  end
+  inline drnkmn1: TDrinkMenu
+    Left = 165
+    Top = 67
+    Width = 927
+    Height = 565
+    TabOrder = 6
+    ExplicitLeft = 165
+    ExplicitTop = 67
+    inherited btnBackToH: TButton
+      OnClick = drnkmn1btnBackToHClick
+    end
+  end
+  inline ldgr1: TLedger
+    Left = 210
+    Top = 30
+    Width = 842
+    Height = 623
+    TabOrder = 7
+    ExplicitLeft = 210
+    ExplicitTop = 30
+    inherited btnBack: TButton
+      OnClick = ldgr1btnBackClick
+    end
+  end
+  inline hmbtns1: THomeButtons
+    Left = 432
+    Top = 143
+    Width = 393
+    Height = 397
+    TabOrder = 1
+    ExplicitLeft = 432
+    ExplicitTop = 143
+    inherited imgMain: TImage
+      OnClick = hmbtns1imgMainClick
+    end
+    inherited imgStarter: TImage
+      OnClick = hmbtns1imgStarterClick
+    end
+    inherited imgDessert: TImage
+      OnClick = hmbtns1imgDessertClick
+    end
+    inherited imgDrink: TImage
+      OnClick = hmbtns1imgDrinkClick
+    end
+    inherited imgSide: TImage
+      OnClick = hmbtns1imgSideClick
+    end
+    inherited imgSettings: TImage
+      OnClick = hmbtns1imgSettingsClick
+    end
+    inherited imgExit: TImage
+      OnClick = hmbtns1imgExitClick
+    end
+    inherited imgOrder: TImage
+      OnClick = hmbtns1imgOrderClick
+    end
+    inherited imgLogOut: TImage
+      OnClick = hmbtns1imgLogOutClick
+    end
+  end
+  inline mngmplys1: TManageEmployees
+    Left = 172
+    Top = 54
+    Width = 913
+    Height = 575
+    TabOrder = 8
+    ExplicitLeft = 172
+    ExplicitTop = 54
+    inherited btnBackToA: TButton
+      OnClick = mngmplys1btnBackToAClick
+    end
+  end
+  inline mngxpns1: TManageExpenses
+    Left = 202
+    Top = 152
+    Width = 853
+    Height = 378
+    TabOrder = 9
+    ExplicitLeft = 202
+    ExplicitTop = 152
+    inherited btnBackToA: TButton
+      OnClick = mngxpns1btnBackToAClick
+    end
+  end
+  inline sdmn1: TSideMenu
+    Left = 167
+    Top = 69
+    Width = 923
+    Height = 567
+    TabOrder = 10
+    ExplicitLeft = 167
+    ExplicitTop = 69
+    inherited btnBackToH: TButton
+      OnClick = sdmn1btnBackToHClick
+    end
+  end
+  inline ordrfrm1: TOrderFrame
+    Left = 365
+    Top = 95
+    Width = 527
+    Height = 492
+    TabOrder = 11
+    ExplicitLeft = 365
+    ExplicitTop = 95
+    inherited btnCheckOut: TButton
+      OnClick = ordrfrm1btnCheckOutClick
+    end
+    inherited btnBackToH: TButton
+      OnClick = ordrfrm1btnBackToHClick
+    end
+  end
+  inline mnmns1: TMainMenus
+    Left = 165
+    Top = 66
+    Width = 928
+    Height = 570
+    TabOrder = 12
+    ExplicitLeft = 165
+    ExplicitTop = 66
+    inherited btnBackToH: TButton
+      OnClick = mnmns1btnBackToHClick
+    end
+  end
+  inline chngvrbls1: TChangeVaribles
+    Left = 555
+    Top = 238
+    Width = 147
+    Height = 218
+    TabOrder = 14
+    ExplicitLeft = 555
+    ExplicitTop = 238
+    inherited btnBackToA: TButton
+      OnClick = chngvrbls1btnBackToAClick
+    end
+  end
+  inline prftcrv1: TProfitCurve
+    Left = 183
+    Top = 41
+    Width = 887
+    Height = 627
+    TabOrder = 13
+    ExplicitLeft = 183
+    ExplicitTop = 41
+    inherited cht1: TChart
+      DepthAxis.Automatic = True
+      DepthAxis.AutomaticMaximum = True
+      DepthAxis.AutomaticMinimum = True
+      DepthTopAxis.Automatic = True
+      DepthTopAxis.AutomaticMaximum = True
+      DepthTopAxis.AutomaticMinimum = True
+      LeftAxis.Automatic = True
+      LeftAxis.AutomaticMaximum = True
+      LeftAxis.AutomaticMinimum = True
+      RightAxis.Automatic = True
+      RightAxis.AutomaticMaximum = True
+      RightAxis.AutomaticMinimum = True
+    end
+  end
+  inline lgnfrm1: TLoginFrame
+    Left = 472
+    Top = 127
+    Width = 314
+    Height = 428
+    TabOrder = 0
+    ExplicitLeft = 472
+    ExplicitTop = 127
+    inherited btnLogin: TButton
+      OnClick = lgnfrm1btnLoginClick
+    end
+  end
+  inline admnbtns1: TAdminButtons
+    Left = 444
+    Top = 208
+    Width = 370
+    Height = 298
+    TabOrder = 2
+    ExplicitLeft = 444
+    ExplicitTop = 208
+    inherited imgManageEmployees: TImage
+      OnClick = admnbtns1imgManageEmployeesClick
+    end
+    inherited imgManageExpenses: TImage
+      OnClick = admnbtns1imgManageExpensesClick
+    end
+    inherited imgChangeVaribles: TImage
+      OnClick = admnbtns1imgChangeVariblesClick
+    end
+    inherited imgShowProfitCurve: TImage
+      OnClick = admnbtns1imgShowProfitCurveClick
+    end
+    inherited imgShowLedger: TImage
+      OnClick = admnbtns1imgShowLedgerClick
+    end
+    inherited imgBackToH: TImage
+      OnClick = admnbtns1imgBackToHClick
+    end
+  end
+end

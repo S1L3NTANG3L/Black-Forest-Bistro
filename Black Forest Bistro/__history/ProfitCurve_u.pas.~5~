@@ -1,0 +1,26 @@
+unit ProfitCurve_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
+  Dialogs, StdCtrls, TeEngine, TeeDBEdit, TeeDBCrossTab, Series, ExtCtrls,
+  TeeProcs, Chart;
+
+type
+  TProfitCurve = class(TFrame)
+    btnBackToA: TButton;
+    cht1: TChart;
+    lnsrsSeries1: TLineSeries;
+    dbcrstbsrc1: TDBCrossTabSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+end.

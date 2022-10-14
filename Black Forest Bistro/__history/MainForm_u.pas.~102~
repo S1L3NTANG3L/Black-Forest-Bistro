@@ -1,0 +1,610 @@
+unit MainForm_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs,DataModule_u,BlackForest_u, DrinkMenu_u,
+  StarterMenu_u, DessertMenu_u, CheckOut_u, AdminButtons_u, HomeButtons_u,
+  Login_u, Order_u, SideMenu_u, ManageExpenses_u, ManageEmployees_u, Ledger_u,
+  ChangeVaribles_u, ProfitCurve_u, MainMenu_u,jpeg, ExtCtrls,StdCtrls,
+  ShowExpenses_u, pngimage,ADODB;
+
+type
+  TBlackForestBistro = class(TForm)
+    lgnfrm1:     TLoginFrame;
+    hmbtns1:     THomeButtons;
+    admnbtns1:   TAdminButtons;
+    chckt1:      TCheckOut;
+    dsrtmn1:     TDessertMenu;
+    strtrmn1:    TStarterMenu;
+    drnkmn1:     TDrinkMenu;
+    ldgr1:       TLedger;
+    mngmplys1:   TManageEmployees;
+    mngxpns1:    TManageExpenses;
+    sdmn1:       TSideMenu;
+    ordrfrm1:    TOrderFrame;
+    mnmns1:      TMainMenus;
+    prftcrv1:    TProfitCurve;
+    chngvrbls1:  TChangeVaribles;
+    procedure    CheckStock(MenuName : TFrame);
+    procedure    FillMenuInformation(MenuName: TFrame);
+    procedure    FillButtonInformation(FrameName: TFrame);
+    procedure    FormActivate(Sender: TObject);
+    procedure    lgnfrm1btnLoginClick(Sender: TObject);
+    procedure    chngvrbls1btnBackToAClick(Sender: TObject);
+    procedure    mnmns1btnBackToHClick(Sender: TObject);
+    procedure    ordrfrm1btnBackToHClick(Sender: TObject);
+    procedure    ordrfrm1btnCheckOutClick(Sender: TObject);
+    procedure    sdmn1btnBackToHClick(Sender: TObject);
+    procedure    mngxpns1btnBackToAClick(Sender: TObject);
+    procedure    mngmplys1btnBackToAClick(Sender: TObject);
+    procedure    ldgr1btnBackClick(Sender: TObject);
+    procedure    drnkmn1btnBackToHClick(Sender: TObject);
+    procedure    strtrmn1btnBackToHClick(Sender: TObject);
+    procedure    dsrtmn1btnBackToHClick(Sender: TObject);
+    procedure    chckt1btnBackToOClick(Sender: TObject);
+    procedure    admnbtns1imgManageEmployeesClick(Sender: TObject);
+    procedure    admnbtns1imgManageExpensesClick(Sender: TObject);
+    procedure    admnbtns1imgChangeVariblesClick(Sender: TObject);
+    procedure    admnbtns1imgShowProfitCurveClick(Sender: TObject);
+    procedure    admnbtns1imgShowLedgerClick(Sender: TObject);
+    procedure    hmbtns1imgMainClick(Sender: TObject);
+    procedure    hmbtns1imgStarterClick(Sender: TObject);
+    procedure    hmbtns1imgDrinkClick(Sender: TObject);
+    procedure    hmbtns1imgDessertClick(Sender: TObject);
+    procedure    hmbtns1imgSideClick(Sender: TObject);
+    procedure    hmbtns1imgOrderClick(Sender: TObject);
+    procedure    hmbtns1imgSettingsClick(Sender: TObject);
+    procedure    hmbtns1imgExitClick(Sender: TObject);
+    procedure    chckt1btnPayClick(Sender: TObject);
+    procedure    hmbtns1imgLogOutClick(Sender: TObject);
+    procedure    admnbtns1imgBackToHClick(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  BlackForestBistro: TBlackForestBistro;
+  Data               : TDataModule2;
+  Formula            : TFormula;
+  MenuNames          : array[0..6] of TFrame;
+  RecipeServings     : array[0..3,0..14] of Integer;
+  I, Counter         : Integer;
+  BoughtID           : Integer;
+  TableNumber        : Integer;
+  CustomerTotal      : Real;
+  PasswordChar       : Char;
+  SuccessBoolean     : Boolean;
+  TempFrame          : TFrame;
+  Image              : TImage;
+  NameLabel          : TLabel;
+  PriceLabel         : TLabel;
+  Button             : TButton;
+  query              : TADOQuery;
+  AppAddress : Widestring;
+implementation
+
+{$R *.dfm}
+
+procedure TBlackForestBistro.FormActivate(Sender: TObject);
+begin
+  AppAddress := ExtractFilePath(Application.ExeName);
+  Data := DataModule_u.datamodule2.create(AppAddress);
+  Formula := BlackForest_u.TFormula.Create;
+  MenuNames[0]          := mnmns1 ;
+  MenuNames[1]          := strtrmn1 ;
+  MenuNames[2]          := sdmn1 ;
+  MenuNames[3]          := dsrtmn1 ;
+  MenuNames[4]          := drnkmn1 ;
+  MenuNames[5]          := hmbtns1 ;
+  MenuNames[6]          := admnbtns1 ;
+  lgnfrm1.Visible       := False;
+  hmbtns1.Visible       := False;
+  admnbtns1.Visible     := False;
+  chckt1.Visible        := False;
+  dsrtmn1.Visible       := False;
+  strtrmn1.Visible      := False;
+  drnkmn1.Visible       := False;
+  ldgr1.Visible         := False;
+  mngmplys1.Visible     := False;
+  mngxpns1.Visible      := False;
+  sdmn1.Visible         := False;
+  ordrfrm1.Visible      := False;
+  mnmns1.Visible        := False;
+  prftcrv1.Visible      := False;
+  chngvrbls1.Visible    := False;
+  query := Data.adoquery;
+  PasswordChar          := '*';
+  Formula.RetrieveImageLocations;//= Done
+  Formula.RetrieveStoredVaribles;//= Done
+  FillButtonInformation(hmbtns1);
+  FillButtonInformation(admnbtns1);
+  Formula.ResetBillTotal;//=
+  lgnfrm1.img1.picture.loadfromfile(Formula.GetLoginImageLocation);
+  with lgnfrm1 do
+  begin
+    edtpassword.PasswordChar := PasswordChar;
+  end;
+  Formula.RetrieveDrinkIDs;//=
+  Formula.RetrieveDrinkNames(Data.adoquery);//=
+  Formula.CalculateDrinkPrices(Data.adoquery);//=
+  Formula.RetrieveRecipeIDs(Data.adoquery);//=
+  Formula.RetrieveRecipeNames(Data.adoquery);//=
+  Formula.RetrieveRecipeServings(Data.adoquery);//=
+  Formula.CalculateRecipePrices(Data.adoquery,Data.adoquerytwo);//=}
+  for I := 0 to 4 do
+  begin
+    FillMenuInformation(MenuNames[I]);
+    CheckStock(MenuNames[I]);
+  end;
+  lgnfrm1.Visible := True;
+end;
+
+//Home Buttons
+procedure TBlackForestBistro.hmbtns1imgDessertClick(Sender: TObject);
+begin
+  hmbtns1.Visible := False;
+  dsrtmn1.Visible := True;
+end;
+
+procedure TBlackForestBistro.hmbtns1imgDrinkClick(Sender: TObject);
+begin
+  hmbtns1.Visible := False;
+  drnkmn1.Visible := True;
+end;
+
+procedure TBlackForestBistro.hmbtns1imgExitClick(Sender: TObject);
+begin
+  if Application.MessageBox('Are you sure you want to exit?', 'Warning',
+    MB_YESNO + MB_ICONWARNING + MB_DEFBUTTON2) = IDYES
+  then
+  begin
+    Halt;
+  end;
+end;
+
+procedure TBlackForestBistro.hmbtns1imgLogOutClick(Sender: TObject);
+begin
+  hmbtns1.Visible := False;
+  lgnfrm1.Visible := True;
+end;
+
+procedure TBlackForestBistro.hmbtns1imgMainClick(Sender: TObject);
+begin
+  hmbtns1.Visible := False;
+  mnmns1.Visible := True;
+end;
+
+procedure TBlackForestBistro.hmbtns1imgOrderClick(Sender: TObject);
+begin
+  hmbtns1.Visible := False;
+  with ordrfrm1 do
+  begin
+   lbl3.caption := Formula.GetBillTotal;
+  end;
+  ordrfrm1.Visible := True;
+end;
+
+procedure TBlackForestBistro.hmbtns1imgSettingsClick(Sender: TObject);
+begin
+  hmbtns1.Visible := False;
+  admnbtns1.Visible := True;
+end;
+
+procedure TBlackForestBistro.hmbtns1imgSideClick(Sender: TObject);
+begin
+  hmbtns1.Visible := False;
+  sdmn1.Visible := True;
+end;
+
+procedure TBlackForestBistro.hmbtns1imgStarterClick(Sender: TObject);
+begin
+  hmbtns1.Visible := False;
+  strtrmn1.Visible := True;
+end;
+
+//Ledger Back Button
+procedure TBlackForestBistro.ldgr1btnBackClick(Sender: TObject);
+begin
+  ldgr1.Visible := False;
+  admnbtns1.Visible := True;
+end;
+
+//Login Button
+procedure TBlackForestBistro.lgnfrm1btnLoginClick(Sender: TObject);
+begin
+  with lgnfrm1 do
+  begin
+    if (edtUsername.Text ='') or (edtPassword.Text ='') then
+    begin
+      Application.MessageBox('Please make shure you entered your Username' +
+      ' and Password into the appropriate boxes!',
+      'Error', MB_OK + MB_ICONSTOP + MB_DEFBUTTON2);
+    end
+    else
+    begin
+      with data.adoquery do
+      begin
+        SQL.Clear;
+        SQL.Add('SELECT * FROM [Employee_Information]');
+        SQL.Add('WHERE [Employee_Name]');
+        SQL.Add('VALUES(:Username)');
+        Parameters.ParamByName('Username').Value := edtUserName.Text;
+        Open;
+        If RecordCount = 0 then
+        Begin
+          Application.MessageBox('Incorrect Login Credentials!', 'Error', MB_OK +
+          MB_ICONSTOP + MB_DEFBUTTON2);
+        End
+        else
+        begin
+          if FieldByName('Password').AsString <> edtpassword.Text then
+          Begin
+            Application.MessageBox('Incorrect Login Credentials!', 'Error', MB_OK +
+            MB_ICONSTOP + MB_DEFBUTTON2);
+          End
+          else
+          begin
+            Formula.RetrieveEmployeeIDNumber(FieldByName('[Employee_ID]').AsInteger);
+            Formula.RetrieveEmployeeJob(FieldByName('[Job]').AsString);
+            edtUsername.Clear;
+            edtPassword.Clear;
+            if not(( Formula.GetEmployeeJob = 'Administrator') or
+               ( Formula.GetEmployeeJob = 'Manager') or
+               ( Formula.GetEmployeeJob = 'Assistent Manager'))
+            then
+            Begin
+              hmbtns1.imgsettings.Visible := False;
+            End ;
+            lgnfrm1.Visible := False;
+            hmbtns1.Visible := True;
+          end;
+        end;
+      end;
+    end;
+  end;
+
+end;
+
+//Manage Employees Back Button
+procedure TBlackForestBistro.mngmplys1btnBackToAClick(Sender: TObject);
+begin
+  with mngmplys1 do
+  begin
+    edtName.Clear;
+    edtSurname.Clear;
+    edtIDNumber.Clear;
+    edtSalary.Clear;
+    edtSearch.Clear;
+    edtAddress.Clear;
+    edtPassword.Clear;
+    edtFireName.Clear;
+    edtFireSurname.Clear;
+    edtFireIDNumber.Clear;
+  end;
+  mngmplys1.Visible := False;
+  admnbtns1.Visible := True;
+end;
+
+//Manage Expenses Back Button
+procedure TBlackForestBistro.mngxpns1btnBackToAClick(Sender: TObject);
+begin
+  with mngxpns1 do
+  begin
+    edtIngredientName.Clear;
+    edtIngredientAmount.Clear;
+    edtIngredientPrice.Clear;
+    edtAmountOfWater.Clear;
+    edtPriceOfWater.Clear;
+    edtAmountOfElectricity.Clear;
+    edtPriceOfElectricity.Clear;
+    edtDrinkName.Clear;
+    edtAmountOfDrinks.Clear;
+    edtDrinkPrice.Clear;
+  end;
+  for I := 0 to 4 do
+  begin
+    CheckStock(MenuNames[I]);
+  end;
+  mngxpns1.Visible := False;
+  admnbtns1.Visible := True;
+end;
+
+//Main Menu Back Button
+procedure TBlackForestBistro.mnmns1btnBackToHClick(Sender: TObject);
+begin
+  mnmns1.Visible := False;
+  hmbtns1.Visible := True;
+end;
+
+//Order Frame Back Button
+procedure TBlackForestBistro.ordrfrm1btnBackToHClick(Sender: TObject);
+begin
+  ordrfrm1.Visible := False;
+  hmbtns1.Visible := True;
+end;
+
+//Order Frame To CheckOut Button
+procedure TBlackForestBistro.ordrfrm1btnCheckOutClick(Sender: TObject);
+begin
+  ordrfrm1.Visible := False;
+  chckt1.Visible := True;
+end;
+
+//Side Menu Back Button
+procedure TBlackForestBistro.sdmn1btnBackToHClick(Sender: TObject);
+begin
+  sdmn1.Visible := False;
+  hmbtns1.Visible := True;
+end;
+
+//Starter Menu Back Button
+procedure TBlackForestBistro.strtrmn1btnBackToHClick(Sender: TObject);
+begin
+  strtrmn1.Visible := False;
+  hmbtns1.Visible := True;
+end;
+
+//Admin Buttons
+
+
+procedure TBlackForestBistro.admnbtns1imgBackToHClick(Sender: TObject);
+begin
+  admnbtns1.Visible := False;
+  hmbtns1.Visible := True;
+end;
+
+procedure TBlackForestBistro.admnbtns1imgChangeVariblesClick(Sender: TObject);
+begin
+  admnbtns1.Visible := False;
+  chngvrbls1.Visible := True;
+end;
+
+procedure TBlackForestBistro.admnbtns1imgManageEmployeesClick(Sender: TObject);
+begin
+  admnbtns1.Visible := False;
+  mngmplys1.Visible := True;
+end;
+
+procedure TBlackForestBistro.admnbtns1imgManageExpensesClick(Sender: TObject);
+begin
+  admnbtns1.Visible := False;
+  mngxpns1.Visible := True;
+end;
+
+procedure TBlackForestBistro.admnbtns1imgShowLedgerClick(Sender: TObject);
+begin
+  Formula.ShowLedger(Data.adoquery,Data.DataSource,ldgr1.dbgrdLedger);
+  admnbtns1.Visible := False;
+  ldgr1.Visible := True;
+end;
+
+procedure TBlackForestBistro.admnbtns1imgShowProfitCurveClick(Sender: TObject);
+begin
+  //add blackforest_u function
+  admnbtns1.Visible := False;
+  prftcrv1.Visible := True;
+end;
+
+//CheckOut Back To Order Button
+procedure TBlackForestBistro.chckt1btnBackToOClick(Sender: TObject);
+begin
+  chckt1.Visible := False;
+  with chckt1 do
+  begin
+    edtCustomerAmount.Clear;
+    cbbTable.Text :='';
+  end;
+  ordrfrm1.Visible := True;
+end;
+
+//CheckOut Pay Button      //Need to finish
+procedure TBlackForestBistro.chckt1btnPayClick(Sender: TObject);
+begin
+  if (chckt1.edtCustomerAmount.Text = '') or (chckt1.cbbTable.Text ='') then//Try To Add Alphabet Checker
+  begin
+    Application.MessageBox('Please make sure all information' +
+    ' about the payment is added!',
+    'Error', MB_OK + MB_ICONSTOP + MB_DEFBUTTON2);
+  end
+  else
+  begin
+    try
+      CustomerTotal := StrToFloat(chckt1.edtCustomerAmount.Text);
+      TableNumber := StrToInt(chckt1.cbbTable.Text);
+      Formula.CheckOut(CustomerTotal,TableNumber,Data.adoquery);
+    except
+      Application.MessageBox('An error occured during checkout!', 'Error', MB_OK
+      + MB_ICONSTOP + MB_DEFBUTTON2);
+    end;
+    Application.MessageBox('Checkout was successful.', 'Error', MB_OK +
+    MB_ICONINFORMATION + MB_DEFBUTTON2);
+    for I := 0 to 4 do
+    begin
+      CheckStock(MenuNames[I]);
+    end;
+    chckt1.Visible := False;
+    hmbtns1.Visible := True;
+  end;
+end;
+
+
+
+//Change Varibles Back Button
+procedure TBlackForestBistro.chngvrbls1btnBackToAClick(Sender: TObject);
+begin
+  chngvrbls1.Visible := False;
+  admnbtns1.Visible := True;
+end;
+
+//Drink Menu Back Button
+procedure TBlackForestBistro.drnkmn1btnBackToHClick(Sender: TObject);
+begin
+  drnkmn1.Visible := False;
+  hmbtns1.Visible := True;
+end;
+
+//Dessert Menu Back Button
+procedure TBlackForestBistro.dsrtmn1btnBackToHClick(Sender: TObject);
+begin
+  dsrtmn1.Visible := False;
+  hmbtns1.Visible := True;
+end;
+
+procedure TBlackForestBistro.CheckStock(MenuName: TFrame);
+begin
+  if (MenuName = mnmns1) or  (MenuName = strtrmn1) or
+   (MenuName = dsrtmn1)  or (MenuName = sdmn1)
+  then
+  begin
+    if MenuName = mnmns1  then
+    begin
+      Counter :=  0;
+    end;
+    if MenuName = strtrmn1  then
+    begin
+      Counter :=  1;
+    end;
+    if MenuName = sdmn1  then
+    begin
+      Counter :=  2;
+    end;
+    if MenuName = dsrtmn1  then
+    begin
+      Counter :=  3;
+    end;
+    with MenuName do
+    begin
+      if not Formula.CheckStock(Counter,I-1,Data.adoquery,Data.adoquerytwo) then
+      begin
+        Button := FindComponent('btn' + IntToStr(i)) as TButton;
+        Button.Visible := False;
+      end
+      else
+      begin
+        Button := FindComponent('btn' + IntToStr(i)) as TButton;
+        Button.Visible := True;
+      end;
+    end;
+  end;
+  if MenuName = drnkmn1  then
+  begin
+    for I := 1 to 14 do
+    begin
+      with MenuName do
+      begin
+        if not Formula.CheckDrinks(I-1,Data.adoquery) then
+        begin
+          Button := FindComponent('btn' + IntToStr(i)) as TButton;
+          Button.Visible := False;
+        end
+        else
+        begin
+          Button := FindComponent('btn' + IntToStr(i)) as TButton;
+          Button.Visible := True;
+        end;
+      end;
+    end;
+  end;
+end;
+
+//Form Activate
+procedure TBlackForestBistro.FillButtonInformation(FrameName: TFrame);
+begin
+  if FrameName = hmbtns1 then
+  begin
+    with hmbtns1 do
+    begin
+      imgMain.Picture.LoadFromFile(Formula.GetHomeButtonImageLoacations(1));
+      imgStarter.Picture.LoadFromFile(Formula.GetHomeButtonImageLoacations(2));
+      imgDrink.Picture.LoadFromFile(Formula.GetHomeButtonImageLoacations(3));
+      imgDessert.Picture.LoadFromFile(Formula.GetHomeButtonImageLoacations(4));
+      imgSide.Picture.LoadFromFile(Formula.GetHomeButtonImageLoacations(5));
+      imgOrder.Picture.LoadFromFile(Formula.GetHomeButtonImageLoacations(6));
+      imgSettings.Picture.LoadFromFile(Formula.GetHomeButtonImageLoacations(7));
+      imgLogOut.Picture.LoadFromFile(Formula.GetHomeButtonImageLoacations(8));
+      imgExit.Picture.LoadFromFile(Formula.GetHomeButtonImageLoacations(9));
+    end;
+  end
+  else
+  begin
+    with admnbtns1 do
+    begin
+      imgManageEmployees.Picture.LoadFromFile
+      (Formula.GetAdminButtonImageLoacations(I));
+      imgManageExpenses.Picture.LoadFromFile
+      (Formula.GetAdminButtonImageLoacations(I));
+      imgChangeVaribles.Picture.LoadFromFile
+      (Formula.GetAdminButtonImageLoacations(I));
+      imgShowProfitCurve.Picture.LoadFromFile
+      (Formula.GetAdminButtonImageLoacations(I));
+      imgShowLedger.Picture.LoadFromFile
+      (Formula.GetAdminButtonImageLoacations(I));
+      imgBackToH.Picture.LoadFromFile
+      (Formula.GetAdminButtonImageLoacations(I));
+    end;
+  end;
+end;
+
+procedure TBlackForestBistro.FillMenuInformation(MenuName: TFrame);
+begin
+  if (MenuName = mnmns1) or  (MenuName = strtrmn1) or
+   (MenuName = dsrtmn1)  or (MenuName = sdmn1)
+  then
+  begin
+    if MenuName = mnmns1  then
+    begin
+      Counter :=  0;
+    end;
+    if MenuName = strtrmn1  then
+    begin
+      Counter :=  1;
+    end;
+    if MenuName = sdmn1  then
+    begin
+      Counter :=  2;
+    end;
+    if MenuName = dsrtmn1  then
+    begin
+      Counter :=  3;
+    end;
+    with MenuName do
+    begin
+      for i := 1 to 15 do
+      begin
+        Image := FindComponent('img' + IntToStr(i)) as TImage;
+        Image.Picture.LoadFromFile
+        (Formula.GetRecipeImageLocations(Counter,I-1));
+        PriceLabel :=  FindComponent('lbl' + IntToStr(i)) as TLabel;
+        PriceLabel.Caption :=
+        FloatToStrF(Formula.GetRecipePrices(Counter,I-1),ffCurrency,9,2);
+        NameLabel :=  FindComponent('lbl' + IntToStr(i + 14)) as TLabel;
+        NameLabel.Caption := Formula.GetRecipeNames(Counter,I-1);
+      end;
+    end;
+  end;
+  if MenuName = drnkmn1  then
+  begin
+    Counter := 4;
+    with drnkmn1 do
+    begin
+      for i := 1 to 15 do
+      begin
+        Image := FindComponent('img' + IntToStr(i)) as TImage;
+        Image.Picture.LoadFromFile
+        (Formula.GetRecipeImageLocations(Counter,I-1));
+        PriceLabel :=  FindComponent('lbl' + IntToStr(i)) as TLabel;
+        PriceLabel.Caption :=
+        FloatToStrF(Formula.GetDrinkPrices(I-1),ffCurrency,9,2);
+        NameLabel :=  FindComponent('lbl' + IntToStr(i + 14)) as TLabel;
+        NameLabel.Caption := Formula.GetDrinkNames(I-1);
+      end;
+    end;
+  end;
+end;
+end.
+

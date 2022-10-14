@@ -1,0 +1,53 @@
+unit Ledger_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
+  Dialogs, StdCtrls, Grids, DBGrids,DataModule_u,BlackForest_u;
+
+type
+  TLedger = class(TFrame)
+    dbgrdLedger: TDBGrid;
+    btnBack: TButton;
+    btnShowIncome: TButton;
+    btnShowExpense: TButton;
+    btnShowTransactionHistory: TButton;
+    btnShowLedger: TButton;
+    procedure btnShowIncomeClick(Sender: TObject);
+    procedure btnShowExpenseClick(Sender: TObject);
+    procedure btnShowLedgerClick(Sender: TObject);
+    procedure btnShowTransactionHistoryClick(Sender: TObject);
+  private
+    { Private declarations }
+    Data     : TDataModule;
+    Formula  : TFormula;
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TLedger.btnShowExpenseClick(Sender: TObject);
+begin
+  Formula.ShowExpense(Data.adoquery,Data.DataSource,dbgrdLedger);
+end;
+
+procedure TLedger.btnShowIncomeClick(Sender: TObject);
+begin
+  Formula.ShowIncome(Data.adoquery,Data.DataSource,dbgrdLedger);
+end;
+
+procedure TLedger.btnShowLedgerClick(Sender: TObject);
+begin
+  Formula.ShowLedger(Data.adoquery,Data.DataSource,dbgrdLedger);
+end;
+
+procedure TLedger.btnShowTransactionHistoryClick(Sender: TObject);
+begin
+  Formula.ShowTransactionHistory(Data.adoquery,Data.DataSource,dbgrdLedger);
+end;
+
+end.

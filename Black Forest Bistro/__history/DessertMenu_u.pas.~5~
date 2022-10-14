@@ -1,0 +1,84 @@
+unit DessertMenu_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
+  Dialogs, StdCtrls, ExtCtrls;
+
+type
+  TDeesertMenu = class(TFrame)
+    img1: TImage;
+    img6: TImage;
+    img11: TImage;
+    lbl11: TLabel;
+    lbl6: TLabel;
+    lbl1: TLabel;
+    img7: TImage;
+    img2: TImage;
+    img12: TImage;
+    img13: TImage;
+    img8: TImage;
+    img3: TImage;
+    img4: TImage;
+    img9: TImage;
+    img14: TImage;
+    img15: TImage;
+    img10: TImage;
+    img5: TImage;
+    lbl15: TLabel;
+    lbl10: TLabel;
+    lbl5: TLabel;
+    lbl4: TLabel;
+    lbl9: TLabel;
+    lbl14: TLabel;
+    lbl13: TLabel;
+    lbl8: TLabel;
+    lbl3: TLabel;
+    lbl2: TLabel;
+    lbl7: TLabel;
+    lbl12: TLabel;
+    lbl16: TLabel;
+    lbl17: TLabel;
+    lbl18: TLabel;
+    lbl19: TLabel;
+    lbl20: TLabel;
+    lbl21: TLabel;
+    lbl22: TLabel;
+    lbl23: TLabel;
+    lbl24: TLabel;
+    lbl25: TLabel;
+    lbl26: TLabel;
+    lbl27: TLabel;
+    lbl28: TLabel;
+    lbl29: TLabel;
+    lbl30: TLabel;
+    btn11: TButton;
+    btn6: TButton;
+    btn1: TButton;
+    btn15: TButton;
+    btn10: TButton;
+    btn5: TButton;
+    btn4: TButton;
+    btn9: TButton;
+    btn14: TButton;
+    btn13: TButton;
+    btn8: TButton;
+    btn3: TButton;
+    btn2: TButton;
+    btn7: TButton;
+    btn12: TButton;
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+{ TDeesertMenu }
+
+end.

@@ -1,0 +1,56 @@
+unit CheckOut_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  StdCtrls,DataModule_u,BlackForest_u;
+
+type
+  TCheckOut = class(TFrame)
+    lbl1: TLabel;
+    lbl2: TLabel;
+    edtCustomerAmount: TEdit;
+    lbl3: TLabel;
+    lbl4: TLabel;
+    cbbTable: TComboBox;
+    btnPay: TButton;
+    btnBackToO: TButton;
+    procedure btnPayClick(Sender: TObject);
+  private
+    { Private declarations }
+    Formula : TFormula;
+    CustomerAmount : Real;
+    TableNumber : Integer;
+    Data : TDataModule;
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TCheckOut.btnPayClick(Sender: TObject);
+begin
+  if (edtCustomerAmount.Text = '') or (cbbTable.Text ='') then//Try To Add Alphabet Checker
+  begin
+    Application.MessageBox('Please make sure all information' +
+    ' about the payment is added!',
+    'Error', MB_OK + MB_ICONSTOP + MB_DEFBUTTON2);
+  end
+  else
+  begin
+    try
+      CustomerAmount := StrToFloat(edtCustomerAmount.Text);
+      TableNumber := StrToInt(cbbTable.Text);
+      Formula.CheckOut(CustomerAmount,TableNumber,Data.adoquery);
+    except
+      Application.MessageBox('An error occured during checkout!', 'Error', MB_OK
+      + MB_ICONSTOP + MB_DEFBUTTON2);
+    end;
+    Application.MessageBox('Checkout was successful.', 'Error', MB_OK +
+    MB_ICONINFORMATION + MB_DEFBUTTON2);
+  end;
+end;
+end.

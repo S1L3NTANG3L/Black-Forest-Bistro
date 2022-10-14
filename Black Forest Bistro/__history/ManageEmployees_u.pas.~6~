@@ -1,0 +1,59 @@
+unit ManageEmployees_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
+  Dialogs, StdCtrls, Grids, DBGrids,DataModule_u,BlackForest_u;
+
+type
+  TManageEmployees = class(TFrame)
+    dbgrdEmployees: TDBGrid;
+    lbl1: TLabel;
+    edtSearch: TEdit;
+    btnSearch: TButton;
+    btnShowAll: TButton;
+    btnShowResigned: TButton;
+    lbl2: TLabel;
+    edtName: TEdit;
+    edtSurname: TEdit;
+    edtIDNumber: TEdit;
+    edtSalary: TEdit;
+    lbl3: TLabel;
+    lbl4: TLabel;
+    lbl5: TLabel;
+    lbl6: TLabel;
+    lbl7: TLabel;
+    lbl8: TLabel;
+    lbl9: TLabel;
+    lbl10: TLabel;
+    edtAddress: TEdit;
+    cbbJobType: TComboBox;
+    lbl11: TLabel;
+    edtPassword: TEdit;
+    lbl12: TLabel;
+    lbl13: TLabel;
+    edtFireName: TEdit;
+    lbl14: TLabel;
+    edtFireSurname: TEdit;
+    lbl15: TLabel;
+    edtFireIDNumber: TEdit;
+    btnAdd: TButton;
+    btnFire: TButton;
+    lbl16: TLabel;
+    cbbCountry: TComboBox;
+    cbbCity: TComboBox;
+    procedure btnSearchClick(Sender: TObject);
+  private
+    { Private declarations }
+    Formula : TFormula;
+    Data : TDataModule;
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+end.

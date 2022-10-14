@@ -1,0 +1,19 @@
+object DataModule2: TDataModule2
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 150
+  Width = 215
+  object adoconnection: TADOConnection
+    Left = 24
+    Top = 24
+  end
+  object adoquery: TADOQuery
+    Parameters = <>
+    Left = 48
+    Top = 88
+  end
+  object datasource: TDataSource
+    Left = 104
+    Top = 24
+  end
+end

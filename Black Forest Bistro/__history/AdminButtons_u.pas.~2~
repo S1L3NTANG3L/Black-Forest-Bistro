@@ -1,0 +1,62 @@
+unit AdminButtons_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
+  Dialogs, ExtCtrls;
+
+type
+  TAdminButtons = class(TFrame)
+    imgManageEmployees: TImage;
+    imgAddIngredients: TImage;
+    imgChangeVaribles: TImage;
+    imgShowProfitCurve: TImage;
+    imgShowTransactionHistory: TImage;
+    imgShowExpensesHistory: TImage;
+    procedure imgManageEmployeesClick(Sender: TObject);
+    procedure imgAddIngredientsClick(Sender: TObject);
+    procedure imgChangeVariblesClick(Sender: TObject);
+    procedure imgShowProfitCurveClick(Sender: TObject);
+    procedure imgShowTransactionHistoryClick(Sender: TObject);
+    procedure imgShowExpensesHistoryClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TAdminButtons.imgAddIngredientsClick(Sender: TObject);
+begin
+//Bleh
+end;
+
+procedure TAdminButtons.imgChangeVariblesClick(Sender: TObject);
+begin
+//Bleh
+end;
+
+procedure TAdminButtons.imgManageEmployeesClick(Sender: TObject);
+begin
+//Bleh
+end;
+
+procedure TAdminButtons.imgShowExpensesHistoryClick(Sender: TObject);
+begin
+//Bleh
+end;
+
+procedure TAdminButtons.imgShowProfitCurveClick(Sender: TObject);
+begin
+//Bleh
+end;
+
+procedure TAdminButtons.imgShowTransactionHistoryClick(Sender: TObject);
+begin
+//Bleh
+end;
+end.

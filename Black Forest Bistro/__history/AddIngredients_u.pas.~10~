@@ -1,0 +1,78 @@
+unit AddIngredients_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, 
+  Dialogs, StdCtrls,DataModule_u,BlackForest_u;
+
+type
+  TFrame2 = class(TFrame)
+    btnAddIngredient: TButton;
+    btnBack: TButton;
+    lbl1: TLabel;
+    edtIngredientName: TEdit;
+    lbl2: TLabel;
+    edtIngredientAmount: TEdit;
+    lbl3: TLabel;
+    edtIngredientPrice: TEdit;
+    procedure btnAddIngredientClick(Sender: TObject);
+  private
+    { Private declarations }
+    Formula : TFormula;
+    IngredientName : string;
+    IngredientAmount : real;
+    IngredientPrice : real;
+    SuccessBoolean : Boolean;
+    SuccessBooleanTwo : Boolean;
+    Data : TDataModule;
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrame2.btnAddIngredientClick(Sender: TObject);
+begin
+  if (edtIngredientName.text = '') or (edtIngredientAmount.text = '') or
+  (edtIngredientPrice.text = '')
+  then
+  begin
+    Application.MessageBox('Please make sure all information' +
+    ' about the ingredient is added!',
+    'Error', MB_OK + MB_ICONSTOP + MB_DEFBUTTON2);
+  end
+  else
+  begin
+    SuccessBoolean := Formula.CheckIfIngredientExists(IngredientName,
+    Data.adoquery);
+    if SuccessBoolean then
+    begin
+      SuccessBooleanTwo := Formula.AddStock(IngredientName,
+      IngredientAmount,IngredientPrice,data.adoquery);
+      if SuccessBooleanTwo then
+      begin
+        Application.MessageBox('Stock successfully added!', 'Application.Title',
+        MB_OK + MB_ICONINFORMATION + MB_DEFBUTTON2);
+      end
+      else
+      begin
+        Application.MessageBox('An error occurred while adding stock.', 'Error',
+        MB_OK + MB_ICONSTOP + MB_DEFBUTTON2);
+      end;
+    end
+    else
+    begin
+      Application.MessageBox('Error: Ingredient doesn''t exists.', 'Error',
+      MB_OK + MB_ICONSTOP + MB_DEFBUTTON2);
+    end;
+  end;
+  edtIngredientName.Clear;
+  edtIngredientAmount.Clear;
+  edtIngredientPrice.Clear;
+end;
+
+
+end.

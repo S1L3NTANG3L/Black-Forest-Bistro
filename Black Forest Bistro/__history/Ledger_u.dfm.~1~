@@ -1,0 +1,7 @@
+object ExpensesHistory: TExpensesHistory
+  Left = 0
+  Top = 0
+  Width = 513
+  Height = 398
+  TabOrder = 0
+end

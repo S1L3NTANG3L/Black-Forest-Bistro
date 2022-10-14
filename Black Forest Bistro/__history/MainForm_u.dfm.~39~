@@ -1,0 +1,33 @@
+object BlackForestBistro: TBlackForestBistro
+  Left = 0
+  Top = 0
+  Caption = 'Black Forest Bistro'
+  ClientHeight = 682
+  ClientWidth = 1257
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnActivate = FormActivate
+  PixelsPerInch = 96
+  TextHeight = 13
+  inline mnmns1: TMainMenus
+    Left = 173
+    Top = 74
+    Width = 928
+    Height = 570
+    TabOrder = 0
+    ExplicitLeft = 173
+    ExplicitTop = 74
+    inherited img10: TImage
+      Left = 754
+      ExplicitLeft = 754
+    end
+    inherited btnBackToH: TButton
+      OnClick = mnmns1btnBackToHClick
+    end
+  end
+end

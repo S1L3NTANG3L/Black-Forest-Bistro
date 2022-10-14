@@ -1,0 +1,303 @@
+object ManageEmployees: TManageEmployees
+  Left = 0
+  Top = 0
+  Width = 913
+  Height = 575
+  TabOrder = 0
+  object lbl1: TLabel
+    Left = 3
+    Top = 3
+    Width = 71
+    Height = 23
+    Caption = 'Search:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbl2: TLabel
+    Left = 3
+    Top = 99
+    Width = 192
+    Height = 23
+    Caption = 'Add New Employee:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbl3: TLabel
+    Left = 3
+    Top = 217
+    Width = 55
+    Height = 13
+    Caption = 'ID Number:'
+  end
+  object lbl4: TLabel
+    Left = 3
+    Top = 263
+    Width = 87
+    Height = 13
+    Caption = 'Country of Origin:'
+  end
+  object lbl5: TLabel
+    Left = 3
+    Top = 309
+    Width = 23
+    Height = 13
+    Caption = 'City:'
+  end
+  object lbl6: TLabel
+    Left = 3
+    Top = 401
+    Width = 48
+    Height = 13
+    Caption = 'Job Type:'
+  end
+  object lbl7: TLabel
+    Left = 3
+    Top = 447
+    Width = 74
+    Height = 13
+    Caption = 'Salary Amount:'
+  end
+  object lbl8: TLabel
+    Left = 3
+    Top = 174
+    Width = 46
+    Height = 13
+    Caption = 'Surname:'
+  end
+  object lbl9: TLabel
+    Left = 3
+    Top = 128
+    Width = 31
+    Height = 13
+    Caption = 'Name:'
+  end
+  object lbl10: TLabel
+    Left = 3
+    Top = 355
+    Width = 46
+    Height = 13
+    Caption = 'Address: '
+  end
+  object lbl11: TLabel
+    Left = 3
+    Top = 493
+    Width = 50
+    Height = 13
+    Caption = 'Password:'
+  end
+  object lbl12: TLabel
+    Left = 219
+    Top = 99
+    Width = 142
+    Height = 23
+    Caption = 'Fire Employee:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbl13: TLabel
+    Left = 219
+    Top = 192
+    Width = 31
+    Height = 13
+    Caption = 'Name:'
+  end
+  object lbl14: TLabel
+    Left = 219
+    Top = 174
+    Width = 46
+    Height = 13
+    Caption = 'Surname:'
+  end
+  object lbl15: TLabel
+    Left = 219
+    Top = 217
+    Width = 55
+    Height = 13
+    Caption = 'ID Number:'
+  end
+  object lbl16: TLabel
+    Left = 219
+    Top = 128
+    Width = 31
+    Height = 13
+    Caption = 'Name:'
+  end
+  object dbgrdEmployees: TDBGrid
+    Left = 367
+    Top = 3
+    Width = 538
+    Height = 561
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object edtSearch: TEdit
+    Left = 3
+    Top = 32
+    Width = 121
+    Height = 21
+    TabOrder = 1
+    Text = 'Employee Name'
+  end
+  object btnSearch: TButton
+    Left = 3
+    Top = 59
+    Width = 94
+    Height = 25
+    Caption = 'Search'
+    TabOrder = 2
+    OnClick = btnSearchClick
+  end
+  object btnShowAll: TButton
+    Left = 219
+    Top = 34
+    Width = 94
+    Height = 25
+    Caption = 'Show All'
+    TabOrder = 3
+    OnClick = btnShowAllClick
+  end
+  object btnShowResigned: TButton
+    Left = 219
+    Top = 3
+    Width = 94
+    Height = 25
+    Caption = 'Show Resigned'
+    TabOrder = 4
+    OnClick = btnShowResignedClick
+  end
+  object edtName: TEdit
+    Left = 3
+    Top = 147
+    Width = 121
+    Height = 21
+    TabOrder = 5
+  end
+  object edtSurname: TEdit
+    Left = 3
+    Top = 190
+    Width = 121
+    Height = 21
+    TabOrder = 6
+  end
+  object edtIDNumber: TEdit
+    Left = 3
+    Top = 236
+    Width = 121
+    Height = 21
+    TabOrder = 7
+  end
+  object edtSalary: TEdit
+    Left = 3
+    Top = 466
+    Width = 121
+    Height = 21
+    TabOrder = 8
+  end
+  object edtAddress: TEdit
+    Left = 3
+    Top = 374
+    Width = 121
+    Height = 21
+    TabOrder = 9
+  end
+  object cbbJobType: TComboBox
+    Left = 3
+    Top = 420
+    Width = 145
+    Height = 21
+    TabOrder = 10
+    Items.Strings = (
+      'Waiter'
+      'Chef'
+      'Administrator'
+      'Manager'
+      'Assistent Manager')
+  end
+  object edtPassword: TEdit
+    Left = 3
+    Top = 512
+    Width = 121
+    Height = 21
+    TabOrder = 11
+  end
+  object edtFireName: TEdit
+    Left = 219
+    Top = 147
+    Width = 121
+    Height = 21
+    TabOrder = 12
+  end
+  object edtFireSurname: TEdit
+    Left = 219
+    Top = 190
+    Width = 121
+    Height = 21
+    TabOrder = 13
+  end
+  object edtFireIDNumber: TEdit
+    Left = 219
+    Top = 236
+    Width = 121
+    Height = 21
+    TabOrder = 14
+  end
+  object btnAdd: TButton
+    Left = 3
+    Top = 539
+    Width = 94
+    Height = 25
+    Caption = 'Add'
+    TabOrder = 15
+    OnClick = btnAddClick
+  end
+  object btnFire: TButton
+    Left = 219
+    Top = 263
+    Width = 94
+    Height = 25
+    Caption = 'Fire'
+    TabOrder = 16
+    OnClick = btnFireClick
+  end
+  object cbbCountry: TComboBox
+    Left = 3
+    Top = 282
+    Width = 145
+    Height = 21
+    TabOrder = 17
+    Text = 'cbbCountry'
+  end
+  object cbbCity: TComboBox
+    Left = 3
+    Top = 328
+    Width = 145
+    Height = 21
+    TabOrder = 18
+    Text = 'cbbCity'
+  end
+  object btnShowCurrent: TButton
+    Left = 219
+    Top = 68
+    Width = 94
+    Height = 25
+    Caption = 'Show Current'
+    TabOrder = 19
+    OnClick = btnShowCurrentClick
+  end
+end

@@ -1,0 +1,65 @@
+object ProfitCurve: TProfitCurve
+  Left = 0
+  Top = 0
+  Width = 887
+  Height = 627
+  TabOrder = 0
+  object btnBackToA: TButton
+    Left = 806
+    Top = 599
+    Width = 75
+    Height = 25
+    Caption = 'Back'
+    TabOrder = 0
+  end
+  object cht1: TChart
+    Left = 3
+    Top = 3
+    Width = 878
+    Height = 590
+    Title.Text.Strings = (
+      'TChart')
+    DepthAxis.Automatic = False
+    DepthAxis.AutomaticMaximum = False
+    DepthAxis.AutomaticMinimum = False
+    DepthAxis.Maximum = 1.160000000000001000
+    DepthAxis.Minimum = 0.160000000000000300
+    DepthTopAxis.Automatic = False
+    DepthTopAxis.AutomaticMaximum = False
+    DepthTopAxis.AutomaticMinimum = False
+    DepthTopAxis.Maximum = 1.160000000000001000
+    DepthTopAxis.Minimum = 0.160000000000000300
+    LeftAxis.Automatic = False
+    LeftAxis.AutomaticMaximum = False
+    LeftAxis.AutomaticMinimum = False
+    RightAxis.Automatic = False
+    RightAxis.AutomaticMaximum = False
+    RightAxis.AutomaticMinimum = False
+    View3D = False
+    TabOrder = 1
+    ColorPaletteIndex = 15
+    object lnsrsSeries1: TLineSeries
+      Marks.Arrow.Visible = True
+      Marks.Callout.Brush.Color = clBlack
+      Marks.Callout.Arrow.Visible = True
+      Marks.Visible = False
+      DataSource = dbcrstbsrc1
+      Pointer.InflateMargins = True
+      Pointer.Style = psRectangle
+      Pointer.Visible = False
+      XValues.Name = 'X'
+      XValues.Order = loAscending
+      YValues.Name = 'Y'
+      YValues.Order = loNone
+      Data = {0000000000}
+    end
+  end
+  object dbcrstbsrc1: TDBCrossTabSource
+    Active = True
+    DataSet = DataModule1.adoquery
+    GroupField = 'Expense'
+    LabelField = 'Expenses'
+    Series = lnsrsSeries1
+    ValueField = 'Income/Expense'
+  end
+end
